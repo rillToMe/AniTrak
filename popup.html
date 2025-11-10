@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AniTrack</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="popup.css" />
+  <meta name="color-scheme" content="dark light">
+</head>
+<body>
+  <header class="topbar">
+    <img src="icons/icon48.png" class="logo" alt="logo" />
+    <h1>AniTrack</h1>
+    <div class="spacer"></div>
+    <div class="theme-mini">
+        <button id="themeToggle" class="tbtn" title="Theme">
+            <i id="themeIcon" class="fa-solid fa-computer"></i>
+        </button>
+    </div>
+    <button id="openOptions" type="button" class="gear" title="Settings"><i class="fa-solid fa-gear"></i></button>
+  </header>
+
+  <section class="controls">
+    <input id="search" placeholder="Search title..." />
+    <button id="addSeries" class="btn neon"><i class="fa-solid fa-plus"></i> Add</button>
+  </section>
+
+  <section id="seriesList" class="grid">
+  </section>
+
+  <template id="cardTpl">
+    <article class="card">
+      <img class="thumb" />
+      <div class="meta">
+        <div class="title-row">
+          <h2 class="title"></h2>
+          <button class="delete-btn" title="Delete series"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="progress">
+          <div class="bar"><div class="fill"></div></div>
+          <span class="label"></span>
+        </div>
+        <div class="actions">
+          <button class="open-detail"><i class="fa-solid fa-pen-to-square"></i> Detail</button>
+          <button class="mark-next"><i class="fa-solid fa-check"></i> Done</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <dialog id="newSeriesDlg">
+  <form method="dialog" id="newSeriesForm">
+    <h3 class="dlg-title">Add Series</h3>
+    <button type="button" class="dlg-close" id="nClose" title="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <label>Title
+      <input name="title" required />
+    </label>
+
+<div class="thumb-picker">
+  <input type="file" id="nThumbFile" accept="image/*" hidden>
+  <button type="button" id="nThumbPick" class="btn small">
+    <i class="fa-solid fa-image"></i> Select Thumbnail…
+  </button>
+  <span class="muted">PNG/JPG, Saved on device</span>
+</div>
+
+    <label>Total episodes
+      <input name="total" type="number" min="1" placeholder="12" />
+    </label>
+
+    <details>
+      <summary>Episode Mode</summary>
+      
+      <label>Custom list 
+        <input name="list" placeholder="1-12,24" />
+      </label>
+      <small>Fill in one: total OR custom list.</small>
+    </details>
+    <menu>
+      <button value="cancel">Cancel</button>
+      <button value="ok" class="primary">Save</button>
+    </menu>
+  </form>
+</dialog>
+
+
+ <dialog id="detailDlg">
+  <form method="dialog" id="detailForm">
+    <h3 id="dTitle" class="dlg-title">Detail</h3>
+    <button type="button" class="dlg-close" id="dClose" title="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="detail-head">
+      <img id="dThumb" />
+      <div class="detail-meta">
+        <label>Title
+          <input id="dInputTitle" />
+        </label>
+<div class="thumb-picker">
+  <input type="file" id="dThumbFile" accept="image/*" hidden>
+  <button type="button" id="dThumbPick" class="btn small">
+    <i class="fa-solid fa-image"></i> Change Thumbnail…
+  </button>
+</div>
+
+        <div class="btnrow">
+            <button id="dGenOpen" class="btn small"><i class="fa-solid fa-plus"></i> Add Episode</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="episodes" class="episodes"></div>
+
+    <menu>
+      <button value="cancel">Close</button>
+      <button id="dSave" value="ok" class="primary">Save</button>
+    </menu>
+  </form>
+</dialog>
+
+<dialog id="genDlg">
+  <form method="dialog" id="genForm">
+    <h3 class="dlg-title">Add or Manage Episodes</h3>
+    <button type="button" class="dlg-close" id="gClose" title="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="g-body">
+      <div class="g-quick">
+        <span class="muted">Preset:</span>
+        <div class="chiprow">
+          <button type="button" class="chip" data-preset="12">1-12</button>
+          <button type="button" class="chip" data-preset="13">1-13</button>
+          <button type="button" class="chip" data-preset="24">1-24</button>
+        </div>
+      </div>
+
+      <label>Total Episodes
+        <input id="gTotal" type="number" min="1" placeholder="12">
+      </label>
+
+      <label>Custom list
+        <input id="gList" placeholder="1-12,24">
+      </label>
+
+      <small class="muted">Fill in one: <b>Total</b> or <b>Custom List</b>. If both are filled, the Custom List will be used.</small>
+    </div>
+
+    <menu>
+      <button value="cancel">Cancel</button>
+      <button value="ok" class="primary">Apply</button>
+    </menu>
+  </form>
+</dialog>
+
+
+
+  <script type="module" src="popup_boot.js"></script>
+
+</body>
+</html>

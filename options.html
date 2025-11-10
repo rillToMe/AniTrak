@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AniTrack - Settings</title>
+  <link rel="stylesheet" href="options.css" />
+  <link rel="icon" href="icons/icon128.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="opt-shell">
+    <aside class="opt-side">
+      <div class="brand">
+        <img src="icons/icon128.png" alt="" class="logo">
+        <div class="title">AniTrack <span>Settings</span></div>
+      </div>
+
+      <nav class="nav">
+  <button class="nav-item is-active" data-section="home">
+    <i class="fa-solid fa-database"></i><span>Impor or Expor</span>
+  </button>
+  <button class="nav-item" data-section="series">
+    <i class="fa-solid fa-list-check"></i><span>Series</span>
+  </button>
+</nav>
+
+<div class="theme-mini">
+  <button id="optThemeToggle" class="icon-btn" title="Ganti Tema">
+    <i id="optThemeIcon" class="fa-solid fa-circle-half-stroke"></i>
+  </button>
+</div>
+
+<div class="side-footer">
+  <button id="backPopup" class="btn outline block">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Back</span>
+  </button>
+</div>
+
+    </aside>
+
+    <main class="opt-main">
+      <section id="sec-home" class="section is-active" role="region" aria-labelledby="home-h1">
+        <div class="panel">
+          <div class="panel-head">
+            <h1 id="home-h1"><i class="fa-solid fa-database"></i> Impor or Export</h1>
+            <p class="muted">Back up your progress or restore from a previous file.</p>
+          </div>
+
+          <div class="panel-body">
+            <div class="row-actions">
+              <button id="exportBtn" class="btn primary">
+                <i class="fa-solid fa-download"></i> Export JSON
+              </button>
+
+              <label class="file">
+                <input id="importFile" type="file" accept="application/json" />
+                <span class="btn"><i class="fa-solid fa-upload"></i> Impor JSON</span>
+                <span class="file-name">Choose File…</span>
+              </label>
+            </div>
+
+            <textarea id="jsonArea" rows="14" placeholder="Export results will appear here..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-series" class="section" role="region" aria-labelledby="series-h1">
+        <div class="panel">
+          <div class="panel-head">
+            <h1 id="series-h1"><i class="fa-solid fa-list-check"></i> Series (Edit)</h1>
+            <p class="muted">Edit title, thumbnail, or regenerate episode list.</p>
+          </div>
+
+          <div class="panel-body">
+            <div id="seriesAdmin" class="series-admin">
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="options_boot.js"></script>
+</body>
+</html>
