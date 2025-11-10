@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AniTrack",
   "version": "1.0.0",
-  "description": "Keep track of your watch progress easily — no accounts, no guessing, just click and go.",
+  "description": "Keep track of your watch progress easily - no accounts, no guessing, just click and go.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "AniTrack",
